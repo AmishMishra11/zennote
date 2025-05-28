@@ -1,4 +1,3 @@
-import React from "react";
 import type { Note } from "../App";
 
 type noteListProps = {
