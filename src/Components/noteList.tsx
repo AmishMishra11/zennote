@@ -1,19 +1,32 @@
-import type { Note } from "../App";
+import { useNote } from "../Context/Notes/useNote";
+import type { Note } from "../Types/Note";
 
-type noteListProps = {
-  notes: Note[];
-};
+function NoteList() {
+  const { stateNote, dispatchNote } = useNote();
 
-function NoteList({ notes }: noteListProps) {
-  console.log(notes);
+  const { notes } = stateNote;
+
+  const handleClick = (note: Note) => {
+    dispatchNote({
+      type: "SET_CURRENT_NOTE",
+      payload: note,
+    });
+  };
+
   return (
     <main>
-      <h2 className="text-2xl">Notes</h2>
-
       {notes.length === 0 ? (
         <p className="text-gray-500">No notes available</p>
       ) : (
-        notes.map((notes) => <p>{notes.title}</p>)
+        notes.map((notes) => (
+          <p
+            className="hover:bg-orange-400 hover:cursor-pointer"
+            key={notes.id}
+            onClick={() => handleClick(notes)}
+          >
+            {notes.title}
+          </p>
+        ))
       )}
     </main>
   );
