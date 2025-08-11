@@ -12,14 +12,14 @@ export interface NoteListProps {
 
 export interface NoteState {
   notes: Note[];
-  currentNote: Note | null;
+  currentNote: Note;
 }
 
 export type NoteAction =
   | { type: "ADD_NOTE"; payload: Note }
   | { type: "UPDATE_NOTE"; payload: Note }
   | { type: "DELETE_NOTE"; payload: string }
-  | { type: "SET_CURRENT_NOTE"; payload: Note | null };
+  | { type: "SET_CURRENT_NOTE"; payload: Note };
 
 export interface NoteContextType {
   stateNote: NoteState;
